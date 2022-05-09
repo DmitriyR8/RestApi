@@ -30,6 +30,9 @@ class Controller extends BaseController
      */
     public function generateResetLink(string $token, string $email): string
     {
-        return getenv('APP_URL'). '/api/user/recover-password?token='. $token. '&email='. $email;
+        return getenv('APP_URL')
+            . '/api/user/recover-password?token=' . $token
+            . '&email='. $email
+            . '&password=';
     }
 }
