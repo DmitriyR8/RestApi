@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  api.test:
+    container_name: api-test
+    build:
+      context: ./
+      dockerfile: .docker/php-fpm/Dockerfile
+    image: api-test
+    working_dir: /var/www/api-test.loc/html
+    volumes:
+      - ./:/var/www/api-test.loc/html:rw
+    depends_on:
+      - postrgesql
+
+  nginx:
+    container_name: api-nginx
+    build:
+      context: ./
+      dockerfile: .docker/nginx/Dockerfile
+    restart: always
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www/api-test.loc/html:rw
+    ports:
+      - "80:80"
+    links:
+      - api.test
+
+  postrgesql:
+    container_name: api-postrgesql
+    image: postgres:14.1-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123456789
+      POSTGRES_DB: api-test
