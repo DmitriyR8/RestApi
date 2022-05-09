@@ -49,7 +49,7 @@
                                         password has been generated for you. To reset your password, click the
                                         following link and follow the instructions.
                                     </p>
-                                    <b>{{ $resetLink }}</b>
+                                    <a href="{{ $resetLink }}">Reset Password</a>
                                 </td>
                             </tr>
                             <tr>
