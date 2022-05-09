@@ -32,7 +32,7 @@ class Controller extends BaseController
     {
         return getenv('APP_URL')
             . '/api/user/recover-password?token=' . $token
-            . '&email='. $email
+            . '&email=' . $email
             . '&password=';
     }
 }
