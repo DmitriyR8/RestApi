@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 cp ./.env.example ./.env
+cp ./.env.example.testing ./.env.testing
 
-docker exec -ti api-test composer install
+docker exec -ti restApi composer install
 
-docker exec -ti api-test php artisan jwt:secret
-docker exec -ti api-test php artisan migrate
-docker exec -ti api-test php artisan password:generate
+docker exec -ti restApi php artisan jwt:secret
+docker exec -ti restApi php artisan migrate
+docker exec -ti restApi php artisan password:generate
 
 # Optional
-#docker exec -ti api-test php artisan db:seed
+#docker exec -ti restApi php artisan db:seed
 
