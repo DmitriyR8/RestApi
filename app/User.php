@@ -70,7 +70,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @param object $request
      * @return User
      */
-    public function createUser(object $request): User
+    public function createUser(Request $request): User
     {
         return $this->create([
             'first_name' => $request->get('first_name'),
